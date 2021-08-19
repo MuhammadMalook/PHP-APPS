@@ -7,7 +7,7 @@ require_once 'header.php';
 echo "<div class='container'>";
 
 if( isset($_POST['delete'])){
-	$sql = "DELETE FROM total_slp WHERE Name='". $_POST['Name']."'";
+	$sql = "DELETE FROM total_slp WHERE Name='". $_POST['firstname']."'";
 	echo $sql;
 	if($con->query($sql) === TRUE){
 		echo "<div class='alert alert-success'>Successfully delete  user</div>";
@@ -31,11 +31,12 @@ if( $result->num_rows > 0)
 			<td>In Game SLP</td>
 			<td>MMR</td>
 			<td width="70px">Delete</td>
+			<td width="50px">Edit</td>
 		</tr>
 	<?php
 	while( $row = $result->fetch_assoc()){ 
 		echo "<form action='' method='POST'>";	//added
-		echo "<input type='hidden' value='". $row['Name']."' name='Name' />"; //added
+		echo "<input type='hidden' value='". $row['Name']."' name='firstame' />"; //added
 		echo "<tr>";
 		echo "<td>".$row['Name'] . "</td>";
 		echo "<td>".$row['Ronin_Address'] . "</td>";
@@ -43,6 +44,7 @@ if( $result->num_rows > 0)
 		echo "<td>".$row['in_game_slp'] . "</td>";
 		echo "<td>".$row['mmr'] . "</td>";
 		echo "<td><input type='submit' name='delete' value='Delete' class='btn btn-danger' /></td>";  
+		echo "<td><a href='edit.php?name=".$row['Name']."' class='btn btn-info'>Edit</a></td>";  
 		echo "</tr>";
 		echo "</form>"; //added 
 	}

@@ -4,7 +4,6 @@ require_once 'connect.php';
 require_once 'header.php';
 
  if (!$con) {
-     # code...
     echo "Problem in database connection! Contact administrator!" . mysqli_error();
  }else{
          $sql ="SELECT * FROM cron ORDER BY date ASC LIMIT 7";
